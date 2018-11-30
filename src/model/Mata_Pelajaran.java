@@ -15,7 +15,7 @@ import model.Penilaian;
  *
  * @author aditya rachman
  */
-public class Mata_Pelajaran {
+public class Mata_Pelajaran implements GettingDataAble{
     private String kode_matpel;
     private String nama;
     private String jenis_materi;
@@ -110,4 +110,21 @@ public class Mata_Pelajaran {
                 "score : "+getScore_kelulusan()+ "\n" +
                 "jenis materi :  "+getJenis_materi()+ "\n";
     }
+
+    @Override
+    public double getRateScore() {
+        return Database.currentDB.getValue("select avg(nilai) from penilaian where kode_matpel='"+kode_matpel+"'");
+    }
+
+    @Override
+    public double getMaximumScore() {
+        return Database.currentDB.getValue("select max(nilai) from penilaian where kode_matpel='"+kode_matpel+"'");
+    }
+
+    @Override
+    public double getMinimumScore() {
+        return Database.currentDB.getValue("select min(nilai) from penilaian where kode_matpel='"+kode_matpel+"'");
+    }
+
+    
 }

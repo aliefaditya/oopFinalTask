@@ -102,6 +102,24 @@ public class Database {
         return s;
         
     }
+    
+    public double getValue(String query){
+        connect();
+        double val = 0;
+        try {
+            
+            
+            ResultSet rs = GetQueryResult(query);
+            rs.next();
+            val = rs.getInt(0);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        disconnect();
+        return val;
+    }
    
     public void disconnect(){
         try {

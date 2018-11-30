@@ -10,7 +10,7 @@ package model;
  * @author aditya rachman
  */
 public interface GettingDataAble {
-    public int getRateScore();
-    public int getMaximumScore();
-    public int getMinimumScore();
+    public double getRateScore();
+    public double getMaximumScore();
+    public double getMinimumScore();
 }
