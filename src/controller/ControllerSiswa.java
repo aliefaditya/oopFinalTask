@@ -15,7 +15,6 @@ import model.Soal;
 import model.Mata_Pelajaran;
 import model.Penilaian;
 import model.Siswa;
-import model.Test;
 import model.Tutor;
 import model.Person;
 import model.Database;
@@ -69,14 +68,14 @@ public class ControllerSiswa extends MouseAdapter implements ActionListener{
         if (alamat.isEmpty() || nama.isEmpty() || tgl_lahir.isEmpty() || email.isEmpty() || nis.isEmpty() || asal.isEmpty()){
             view.showMessage("Data Kosong, Isi Semua", "Error", 0);
         }else{
-//            if (db.cekDuplikatNIS(nis)){
-//                view.showMessage("NIS Sudah Ada", "Error", 0);
-//            }else{
-//                model.addSiswa(nama, umur, alamat, tgl_lahir, email, nis, asal);
-//                view.showMessage("Data Berhasil Ditambah", "Success", 1);
-//                view.setVisible(false);
-//                viewAwal.setVisible(true);
-//            }
+            if (db.cekDuplikatNIS(nis)){
+                view.showMessage("NIS Sudah Ada", "Error", 0);
+            }else{
+                model.addSiswa(nama, umur, alamat, tgl_lahir, email, nis, asal);
+                view.showMessage("Data Berhasil Ditambah", "Success", 1);
+                view.setVisible(false);
+                viewAwal.setVisible(true);
+            }
         }
         db.disconnect();
     }

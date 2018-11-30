@@ -44,18 +44,18 @@ public class Application {
         }
         return score/(allSoal.size()*1.0d);
     }
-//    public void addSiswa(String nama, int umur, 
-//            String alamat, String tgl_lahir, 
-//            String email,String nis, String asal_sd){
-//        Siswa s = new Siswa(nama, umur, alamat, tgl_lahir, email, nis, asal_sd);
-//        db.saveSiswa(s);
-//    }
-//    public void addTutor(String nama, int umur, 
-//            String alamat, String tgl_lahir, 
-//            String email,String nik, String no_ijazah, String password){
-//        Tutor t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
-//        db.saveTutor(t);
-//    }
+    public void addSiswa(String nama, int umur, 
+            String alamat, String tgl_lahir, 
+            String email,String nis, String asal_sd){
+        Siswa s = new Siswa(nama, umur, alamat, tgl_lahir, email, nis, asal_sd);
+        db.saveSiswa(s);
+    }
+    public void addTutor(String nama, int umur, 
+            String alamat, String tgl_lahir, 
+            String email,String nik, String no_ijazah, String password){
+        Tutor t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
+        db.saveTutor(t);
+    }
 //    public void addPenilaian(double nilai,List<Mata_Pelajaran> MP, 
 //                List<Tutor> tutor,
 //                List<Siswa> siswa){
@@ -150,6 +150,10 @@ public class Application {
         }
         return sLatihanList;
     }
+    
+//    public Database getDB(){
+//    
+//    }
             
     
 //    public String getTestList(){

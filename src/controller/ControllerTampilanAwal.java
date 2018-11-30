@@ -15,7 +15,6 @@ import model.Soal;
 import model.Mata_Pelajaran;
 import model.Penilaian;
 import model.Siswa;
-import model.Test;
 import model.Tutor;
 import model.Person;
 import model.Database;
@@ -24,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Application;
@@ -36,6 +36,7 @@ import view.*;
 public class ControllerTampilanAwal extends MouseAdapter implements ActionListener{
     private Application model;
     private Tampilan_awal viewAwal;
+    private List<Siswa> siswa;
     private Home_siswa viewSiswa;
     private Home_tutor viewTutor;
     private Tampilan_regist_tutor viewTutorRegist;
@@ -43,10 +44,11 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
     private Database db;
     
     public ControllerTampilanAwal(Application model){
+        this.model = model;
         viewAwal = new Tampilan_awal();
-        db = new Database();
         viewAwal.addActionListener(this);
         viewAwal.setVisible(true);
+        
     }
     
     @Override
@@ -72,7 +74,7 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-                if (db.cekSiswa(email, password)){
+                if (db.cekSiswa(email)){
                     viewAwal.setVisible(false);
                     viewSiswa.setVisible(true);
                 }

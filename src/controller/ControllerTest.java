@@ -15,7 +15,6 @@ import model.Soal;
 import model.Mata_Pelajaran;
 import model.Penilaian;
 import model.Siswa;
-import model.Test;
 import model.Tutor;
 import model.Person;
 import model.Database;
@@ -105,6 +104,10 @@ public class ControllerTest extends MouseAdapter implements ActionListener {
         
     }
     
+    public void btnStop(){
+        
+    }
+    
     public void showSoal(Soal soal){
         String q = soal.getSoal();
         
@@ -149,11 +152,11 @@ public class ControllerTest extends MouseAdapter implements ActionListener {
         setCurrentSoal(currentSoal-1);
         showSoal(allSoal.get(currentSoal));
     }
-    public void btnStop(){
-        db.connect();
-        
-        db.disconnect();
-    }
+//    public void btnStop(){
+//        db.connect();
+//        
+//        db.disconnect();
+//    }
     public void btnSubmit(){
         submit();
     }

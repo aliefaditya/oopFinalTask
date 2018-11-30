@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 public class Database {
     public static Database currentDB;
     private Connection conn = null;
+    public Siswa s;
     
     public Database(){
         currentDB = this;
@@ -84,6 +85,23 @@ public class Database {
         
     }
     
+    public List<Siswa> getSiswa(int nis){
+        connect();
+        ResultSet rs = GetQueryResult("select * from siswa where nis='"+nis+"';");
+        List<Siswa> s = new ArrayList<>();
+        try{
+            int i = 0;
+            while(rs.next()){
+                s.add(new Siswa(rs.getString("nama"), rs.getInt("umur"), rs.getString("alamat"),
+                rs.getString("tgl_lahir"), rs.getString("email"), rs.getString("nis"), rs.getString("asal_sd")));
+                i++;
+            }
+        }catch(SQLException e){
+            System.out.println("ERROR : "+ e.getMessage());
+        }
+        return s ;
+    }
+    
     public List<Soal> getSoalTes(String kodeMP ,int level ,int countSoal){
         connect();
         ResultSet rs = GetQueryResult("select * from test where kode_matpel='"+kodeMP+"' AND level="+level+" ORDER BY RAND() LIMIT "+countSoal);
@@ -100,7 +118,6 @@ public class Database {
         }
         disconnect();
         return s;
-        
     }
    
     public void disconnect(){
@@ -249,32 +266,32 @@ public class Database {
 //    }
 //    
 //    
-//    public void saveSiswa(Siswa s){
-//        /* String nama, int umur, 
-//            String alamat, String tgl_lahir, 
-//            String email,String nis, String asal_sd */
-//        try{
-//            String query = "insert into siswa values('"+s.getNama()+"','"+s.getUmur()+"','"+s.getAlamat()+"','"+s.getTgl_lahir()+"','"+s.getEmail()+"','"+s.getNis()+"','"+s.getAsal_sd()+"');";
-//            Statement stmt = conn.createStatement();
-//            stmt.execute(query);
-//        }   
-//        catch(SQLException ex){
-//            System.out.println("saving siswa error");
-//        }
-//    }
-//    public void saveTutor(Tutor t){
-//        /*  String nama, int umur, 
-//            String alamat, String tgl_lahir, 
-//            String email,String nik, String no_ijazah, String password*/
-//        try{
-//            String query = "insert into tutor values('"+t.getNama()+"','"+t.getUmur()+"','"+t.getAlamat()+"','"+t.getTgl_lahir()+"','"+t.getEmail()+"','"+t.getNik()+"','"+t.getNo_ijazah()+"','"+t.getPassword()+"');";
-//            Statement stmt = conn.createStatement();
-//            stmt.execute(query);
-//        }   
-//        catch(SQLException ex){
-//            System.out.println("saving tutor error");
-//        }
-//    }
+    public void saveSiswa(Siswa s){
+        /* String nama, int umur, 
+            String alamat, String tgl_lahir, 
+            String email,String nis, String asal_sd */
+        try{
+            String query = "insert into siswa values('"+s.getNama()+"','"+s.getUmur()+"','"+s.getAlamat()+"','"+s.getTgl_lahir()+"','"+s.getEmail()+"','"+s.getNis()+"','"+s.getAsal_sd()+"');";
+            Statement stmt = conn.createStatement();
+            stmt.execute(query);
+        }   
+        catch(SQLException ex){
+            System.out.println("saving siswa error");
+        }
+    }
+    public void saveTutor(Tutor t){
+        /*  String nama, int umur, 
+            String alamat, String tgl_lahir, 
+            String email,String nik, String no_ijazah, String password*/
+        try{
+            String query = "insert into tutor values('"+t.getNama()+"','"+t.getUmur()+"','"+t.getAlamat()+"','"+t.getTgl_lahir()+"','"+t.getEmail()+"','"+t.getNik()+"','"+t.getNo_ijazah()+"','"+t.getPassword()+"');";
+            Statement stmt = conn.createStatement();
+            stmt.execute(query);
+        }   
+        catch(SQLException ex){
+            System.out.println("saving tutor error");
+        }
+    }
 //    public void savePenilaian(Penilaian p){
 //            /* 
 //                double nilai,List<Mata_Pelajaran> MP, 
@@ -611,27 +628,29 @@ public class Database {
 //        }   return null;
 //    }
 //    
-//    public boolean cekDuplikatNIK(String nik){
-//        boolean cek = false;
-//        for (Tutor tutor : listTutor) {
-//            if (tutor.getNik().equals(nik)){
-//                cek = true;
-//                break;
-//            }
-//        }
-//        return cek;
-//    }
+    public boolean cekDuplikatNIK(String nik){
+        boolean cek = false;
+        List<Tutor> listTutor = new ArrayList<>();
+        for (Tutor tutor : listTutor) {
+            if (tutor.getNik().equals(nik)){
+                cek = true;
+                break;
+            }
+        }
+        return cek;
+    }
 //    
-//    public boolean cekDuplikatNIS(String nis){
-//        boolean cek = false;
-//        for (Siswa s : listSiswa) {
-//            if (s.getNis().equals(nis)){
-//                cek = true;
-//                break;
-//            }
-//        }
-//        return cek;
-//    }
+    public boolean cekDuplikatNIS(String nis){
+        boolean cek = false;
+        List<Siswa> listSiswa = new ArrayList<>();
+        for (Siswa s : listSiswa) {
+            if (s.getNis().equals(nis)){
+                cek = true;
+                break;
+            }
+        }
+        return cek;
+    }
 //    
 //    public boolean cekDuplikatIDTest(int id){
 //        boolean cek = false;
@@ -644,27 +663,29 @@ public class Database {
 //        return cek;
 //    }
 //    
-//    public boolean cekTutor(String email, char[] password){
-//        boolean cek = false;
-//        for (Tutor t : listTutor) {
-//            if ((t.getPassword().equals(password))&&(t.getEmail().equals(email))){
-//                cek = true;
-//                break;
-//            }
-//        }
-//        return cek;
-//    }
-//    
-//    public boolean cekSiswa(String email, char[] nis){
-//        boolean cek = false;
-//        for (Siswa s : listSiswa) {
-//            if ((s.getEmail().equals(email))&&(s.getNis().equals(nis))){
-//                cek = true;
-//                break;
-//            }
-//        }
-//        return cek;
-//    }
+    public boolean cekTutor(String email, char[] password){
+        boolean cek = false;
+        List<Tutor> listTutor = new ArrayList<>();
+        for (Tutor t : listTutor) {
+            if ((t.getPassword().equals(password))&&(t.getEmail().equals(email))){
+                cek = true;
+                break;
+            }
+        }
+        return cek;
+    }
+    
+    public boolean cekSiswa(String email){
+        boolean cek = false;
+        List<Siswa> listSiswa = new ArrayList<>();
+        for (Siswa s : listSiswa) {
+            if ((s.getEmail().equals(email))){
+                cek = true;
+                break;
+            }
+        }
+        return cek;
+    }
     
     
 }

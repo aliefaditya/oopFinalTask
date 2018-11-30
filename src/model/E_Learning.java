@@ -21,7 +21,8 @@ public class E_Learning {
     public static void main(String[] args) {
         // TODO code application logic here
         Application app = new Application();
-        ControllerTest c = new ControllerTest(app , Database.currentDB.getMataPelajaran("A100"));
+        ControllerTampilanAwal c = new ControllerTampilanAwal(app);
+        //ControllerTest c = new ControllerTest(app , Database.currentDB.getMataPelajaran("A100"));
     }
     
 }

@@ -15,7 +15,6 @@ import model.Soal;
 import model.Mata_Pelajaran;
 import model.Penilaian;
 import model.Siswa;
-import model.Test;
 import model.Tutor;
 import model.Person;
 import model.Database;
@@ -68,14 +67,14 @@ public class ControllerTutor extends MouseAdapter implements ActionListener{
         if (alamat.isEmpty() || nama.isEmpty() || tgl_lahir.isEmpty() || email.isEmpty() || nik.isEmpty() ||ijazah.isEmpty() || password.isEmpty()){
             view.showMessage("Data Kosong, Isi Semua", "Error", 0);
         }else{
-//            if (db.cekDuplikatNIK(nik)){
-//                view.showMessage("NIK Sudah Ada", "Error", 0);
-//            }else{
-//                model.addTutor(nama, umur, alamat, tgl_lahir, email, nik, ijazah, password);
-//                view.showMessage("Data Berhasil Ditambah", "Success", 1);
-//                view.setVisible(false);
-//                viewAwal.setVisible(true);
-//            }
+            if (db.cekDuplikatNIK(nik)){
+                view.showMessage("NIK Sudah Ada", "Error", 0);
+            }else{
+                model.addTutor(nama, umur, alamat, tgl_lahir, email, nik, ijazah, password);
+                view.showMessage("Data Berhasil Ditambah", "Success", 1);
+                view.setVisible(false);
+                viewAwal.setVisible(true);
+            }
         }
         db.disconnect();
     }
