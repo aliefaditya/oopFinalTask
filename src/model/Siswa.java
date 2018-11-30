@@ -9,7 +9,7 @@ package model;
  *
  * @author aditya rachman
  */
-public class Siswa extends Person {
+public class Siswa extends Person implements GettingDataAble{
     private String nis;
     private String asal_sd;
     
@@ -81,5 +81,20 @@ public class Siswa extends Person {
                 "umur : "+getUmur()+ "\n" +
                 "nis : "+getNis()+ "\n" +
                 "asal sd : "+getAsal_sd(); 
+    }
+
+    @Override
+    public double getRateScore() {
+        return Database.currentDB.getValue("select avg(nilai) from penilaian where nis='"+nis+"'");
+    }
+
+    @Override
+    public double getMaximumScore() {
+        return Database.currentDB.getValue("select max(nilai) from penilaian where nis='"+nis+"'");
+    }
+
+    @Override
+    public double getMinimumScore() {
+        return Database.currentDB.getValue("select min(nilai) from penilaian where nis='"+nis+"'");
     }
 }

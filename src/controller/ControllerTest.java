@@ -15,6 +15,10 @@ import model.Soal;
 import model.Mata_Pelajaran;
 import model.Penilaian;
 import model.Siswa;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a5a6b941d99054424e4b8a90db9f653ab068d07
 import model.Tutor;
 import model.Person;
 import model.Database;

@@ -85,10 +85,10 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-                if (db.cekTutor(email, password)){
-                    viewAwal.setVisible(false);
-                    viewTutor.setVisible(true);
-                }
+//                if (db.cekTutor(email, password)){
+//                    viewAwal.setVisible(false);
+//                    viewTutor.setVisible(true);
+//                }
             }           
         }
     }
