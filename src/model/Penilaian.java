@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,8 @@ public class Penilaian {
     private String kodeMP;
     private String nik;
     private String nis;
+    /*============HEAD=============*/
+    private List<Siswa> siswa = new ArrayList<>();
     
     public Penilaian(double nilai,String kodeMP , String nik , String nis){
         setNilai(nilai);
@@ -59,6 +62,28 @@ public class Penilaian {
     public String getNik() {
         return nik;
     }
+    
+    /*=============HEAD===========*/
+    
+//    public void addSiswa(Siswa s){
+//        if(siswa.size() < 1000){
+//            siswa.add(s);
+//        }
+//        else{
+//            System.out.println("penuh");
+//        }
+//    }
+//    
+//    public List<Siswa> getSiswa(){
+//        int i = 1;
+//        Siswa s = null;
+//        for (Siswa stdnt : siswa){
+//            System.out.println("Nama : "+stdnt.get);stdnt.getNama()
+//        }
+//        return 
+//    }
+    
+    /*=============END=============*/
     
     //return Objek Tutor yang di get dari DB
     public Tutor getTutor(){

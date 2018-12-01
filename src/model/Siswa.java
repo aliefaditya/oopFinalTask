@@ -52,8 +52,11 @@ public class Siswa extends Person implements GettingDataAble{
      * @param nis the nis to set
      */
     public void setNis(String nis) {
+        //System.out.println(nis);
+        //System.out.println(nis.length());
         if(nis.length() == 7){
             this.nis = nis;
+            //System.out.println("setted");
         }
     }
 

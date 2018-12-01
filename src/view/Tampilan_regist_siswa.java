@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -36,13 +37,13 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tfNama = new javax.swing.JTextField();
-        tfNis = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        lnis = new javax.swing.JLabel();
+        tfNis = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         tfAsal = new javax.swing.JTextField();
         tfTgllahir = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        btnCreate = new javax.swing.JButton();
+        btnBuat = new javax.swing.JButton();
         tfUmur = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -77,23 +78,18 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
 
         jLabel2.setText("NAMA");
 
-        tfNama.setText(" ");
-
-        tfNis.setText("NIS");
-
-        jTextField2.setText(" ");
+        lnis.setText("NIS");
 
         jLabel5.setText("ASAL SEKOLAH");
 
-        tfAsal.setText(" ");
-
-        tfTgllahir.setText(" ");
-
         jLabel6.setText("TGL_LAHIR");
 
-        btnCreate.setText("Create");
-
-        tfUmur.setText(" ");
+        btnBuat.setText("Create");
+        btnBuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuatActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("UMUR");
 
@@ -107,7 +103,7 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(275, Short.MAX_VALUE)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuat, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(257, 257, 257))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
@@ -121,12 +117,12 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
                                     .addComponent(tfNama, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfNis)
+                                        .addComponent(lnis)
                                         .addComponent(jLabel5))
                                     .addGap(61, 61, 61)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(tfAsal, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfNis, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(tfTgllahir, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel6))
                         .addGap(84, 84, 84)
@@ -155,8 +151,8 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
                     .addComponent(tfAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNis)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lnis)
+                    .addComponent(tfNis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -172,7 +168,7 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(tfUmur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuat, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -197,41 +193,10 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tampilan_regist_siswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tampilan_regist_siswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tampilan_regist_siswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tampilan_regist_siswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void btnBuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuatActionPerformed
+        
+    }//GEN-LAST:event_btnBuatActionPerformed
 
-        /* Create and display the form */
-        /*
-            String nama, int umur, 
-            String alamat, String tgl_lahir, 
-            String email,String nis, String asal_sd
-        */      
-    }
     
     public void setNama(String s){
         tfNama.setText(s);
@@ -249,7 +214,7 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
         tfEmail.setText(s);
     }
     public void setNis(String s){
-        tfNis.setText(s);
+        lnis.setText(s);
     }
     public void setAsal(String s){
         tfAsal.setText(s);
@@ -277,17 +242,17 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
     }
     
     public JButton getBtnCreate(){
-        return btnCreate;
+        return btnBuat;
     }
     public void addActionListener(ActionListener e){
-        btnCreate.addActionListener(e);
+        btnBuat.addActionListener(e);
     } 
     public void showMessage(String message, String title, int type){
         JOptionPane.showMessageDialog(null, message, title, type);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnBuat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -297,12 +262,12 @@ public class Tampilan_regist_siswa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lnis;
     private javax.swing.JTextField tfAlamat;
     private javax.swing.JTextField tfAsal;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfNama;
-    private javax.swing.JLabel tfNis;
+    private javax.swing.JTextField tfNis;
     private javax.swing.JTextField tfTgllahir;
     private javax.swing.JTextField tfUmur;
     // End of variables declaration//GEN-END:variables

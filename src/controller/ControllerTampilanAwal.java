@@ -64,44 +64,38 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
     }
     
     
-    public void btnLogin(){
+    public void btnLogin() throws SQLException{
         
         String email = viewAwal.getEmail();
         char[] password = viewAwal.getPassword();
-        String peran = viewAwal.getPeran();
-        if((peran == "Siswa")||(peran == "siswa")){
+        String peran = viewAwal.getPeran().toLowerCase();
+        if(peran == "siswa"){
            if (email.isEmpty()){
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-                if (db.cekSiswa(email)){
-                    viewAwal.setVisible(false);
-                    viewSiswa.setVisible(true);
+                if (Database.currentDB.cekSiswa(email, password)){
+                    new ControllerHomeSiswa(model);
                 }
             } 
         }
-        else if((peran == "Tutor")||(peran == "tutor")){
+        else if (peran == "tutor"){
            if ((email.isEmpty())||(password.toString() == " ")){
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-//                if (db.cekTutor(email, password)){
-//                    viewAwal.setVisible(false);
-//                    viewTutor.setVisible(true);
-//                }
+                if (Database.currentDB.cekTutor(email, password)){
+                    new ControllerHomeTutor(model);
+                }
             }           
         }
     }
     
     public void btnRegistTutor(){
-        Tampilan_regist_tutor t = new Tampilan_regist_tutor();
-        t.setVisible(true);
-        viewAwal.dispose();
+        new ControllerTutor(model);
     }
     public void btnRegistSiswa(){
-        Tampilan_regist_siswa s = new Tampilan_regist_siswa();
-        s.setVisible(true);
-        viewAwal.dispose(); 
+        new ControllerSiswa(model);
     }
     /*
     public void mousePressed(MouseEvent e){

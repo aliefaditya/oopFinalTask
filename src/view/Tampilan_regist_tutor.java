@@ -51,7 +51,7 @@ public class Tampilan_regist_tutor extends javax.swing.JFrame {
         tfEmail = new javax.swing.JTextField();
         tfAlamat = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        btnCreate = new javax.swing.JButton();
+        btnBuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,37 +80,21 @@ public class Tampilan_regist_tutor extends javax.swing.JFrame {
 
         jLabel2.setText("NAMA");
 
-        tfNama.setText(" ");
-
         jLabel3.setText("NIK");
-
-        tfNik.setText(" ");
-
-        tfIjazah.setText(" ");
 
         jLabel4.setText("NO IJAZAH");
 
         jLabel5.setText("PASSWORD");
 
-        tfPassword.setText(" ");
-
-        tfTgllahir.setText(" ");
-
         jLabel6.setText("TGL_LAHIR");
 
         jLabel7.setText("Umur");
 
-        tfUmur.setText(" ");
-
         jLabel8.setText("Email");
-
-        tfEmail.setText(" ");
-
-        tfAlamat.setText(" ");
 
         jLabel9.setText("Alamat");
 
-        btnCreate.setText("Create");
+        btnBuat.setText("Create");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -160,7 +144,7 @@ public class Tampilan_regist_tutor extends javax.swing.JFrame {
                                     .addComponent(jLabel7)
                                     .addGap(100, 100, 100)
                                     .addComponent(tfUmur, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuat, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58))
         );
         jPanel2Layout.setVerticalGroup(
@@ -204,7 +188,7 @@ public class Tampilan_regist_tutor extends javax.swing.JFrame {
                             .addComponent(jLabel6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnBuat, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
 
@@ -312,17 +296,17 @@ public class Tampilan_regist_tutor extends javax.swing.JFrame {
     }
     
     public JButton getBtnCreate(){
-        return btnCreate;
+        return btnBuat;
     }
     public void addActionListener(ActionListener e){
-        btnCreate.addActionListener(e);
+        btnBuat.addActionListener(e);
     } 
     public void showMessage(String message, String title, int type){
         JOptionPane.showMessageDialog(null, message, title, type);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnBuat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

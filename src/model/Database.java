@@ -50,7 +50,7 @@ public class Database {
         connect();
         try{
             Statement st = conn.createStatement();
-            st.executeQuery(query);
+            st.executeUpdate(query);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -285,30 +285,20 @@ public class Database {
 //    
 //    
     public void saveSiswa(Siswa s){
-        /* String nama, int umur, 
-            String alamat, String tgl_lahir, 
-            String email,String nis, String asal_sd */
-        try{
-            String query = "insert into siswa values('"+s.getNama()+"','"+s.getUmur()+"','"+s.getAlamat()+"','"+s.getTgl_lahir()+"','"+s.getEmail()+"','"+s.getNis()+"','"+s.getAsal_sd()+"');";
-            Statement stmt = conn.createStatement();
-            stmt.execute(query);
-        }   
-        catch(SQLException ex){
-            System.out.println("saving siswa error");
-        }
+        /* String nama, int umur,
+        String alamat, String tgl_lahir,
+        String email,String nis, String asal_sd */
+        String query = "insert into siswa values('"+s.getNama()+"','"+s.getUmur()+"','"+s.getAlamat()+"','"+s.getTgl_lahir()+"','"+s.getEmail()+"','"+s.getNis()+"','"+s.getAsal_sd()+"');";
+        RunQuery(query);
     }
     public void saveTutor(Tutor t){
-        /*  String nama, int umur, 
-            String alamat, String tgl_lahir, 
-            String email,String nik, String no_ijazah, String password*/
-        try{
-            String query = "insert into tutor values('"+t.getNama()+"','"+t.getUmur()+"','"+t.getAlamat()+"','"+t.getTgl_lahir()+"','"+t.getEmail()+"','"+t.getNik()+"','"+t.getNo_ijazah()+"','"+t.getPassword()+"');";
-            Statement stmt = conn.createStatement();
-            stmt.execute(query);
-        }   
-        catch(SQLException ex){
-            System.out.println("saving tutor error");
-        }
+        /*  
+        String nama, int umur,
+        String alamat, String tgl_lahir,
+        String email,String nik, String no_ijazah, String password
+        */
+        String query = "insert into tutor values('"+t.getNama()+"','"+t.getUmur()+"','"+t.getAlamat()+"','"+t.getTgl_lahir()+"','"+t.getEmail()+"','"+t.getNik()+"','"+t.getNo_ijazah()+"','"+t.getPassword()+"');";
+        RunQuery(query);
     }
 //    public void savePenilaian(Penilaian p){
 //            /* 
@@ -693,11 +683,11 @@ public class Database {
         return cek;
     }
     
-    public boolean cekSiswa(String email){
+    public boolean cekSiswa(String email, char[] password){
         boolean cek = false;
         List<Siswa> listSiswa = new ArrayList<>();
         for (Siswa s : listSiswa) {
-            if ((s.getEmail().equals(email))){
+            if ((s.getEmail().equals(email))&&(s.getNis().equals(password))){
                 cek = true;
                 break;
             }

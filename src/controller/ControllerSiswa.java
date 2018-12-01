@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import model.Application;
 import view.*;
 
@@ -29,54 +30,47 @@ import view.*;
  *
  * @author aditya rachman
  */
-public class ControllerSiswa extends MouseAdapter implements ActionListener{
+public class ControllerSiswa extends MouseAdapter {
     private Application model;
+    private List<Siswa> allSiswa = null;
     private Tampilan_regist_siswa view;
     private Tampilan_awal viewAwal;
-    private Database db;
-
+    
     
     public ControllerSiswa(Application model){
         this.model = model;
         view = new Tampilan_regist_siswa();
         view.setVisible(true);
-        view.addActionListener(this);
-        view.setVisible(true);
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        /*
-            String nama, int umur, 
-            String alamat, String tgl_lahir, 
-            String email,String nis, String asal_sd
-        */ 
-        if (source.equals(view.getBtnCreate())){
-            btnCreate();
-        }
+        
+        view.getBtnCreate().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.out.println("clicked");
+                btnCreate();
+            }
+        });
     }
     
     public void btnCreate(){
-        db.connect();
-        int umur = view.getUmur();
         String nama = view.getNama();
+        int umur = view.getUmur();
         String alamat = view.getAlamat();
         String tgl_lahir = view.getTgllahir();
         String email = view.getEmail();
         String nis = view.getNis();
         String asal = view.getAsal();
-        if (alamat.isEmpty() || nama.isEmpty() || tgl_lahir.isEmpty() || email.isEmpty() || nis.isEmpty() || asal.isEmpty()){
+        if (alamat.isEmpty() || nama.isEmpty() || tgl_lahir.isEmpty() || email.isEmpty() || nis.isEmpty() || asal.isEmpty() ){
             view.showMessage("Data Kosong, Isi Semua", "Error", 0);
         }else{
-            if (db.cekDuplikatNIS(nis)){
+            System.out.println();
+            if (Database.currentDB.cekDuplikatNIS(nis)){
                 view.showMessage("NIS Sudah Ada", "Error", 0);
             }else{
                 model.addSiswa(nama, umur, alamat, tgl_lahir, email, nis, asal);
                 view.showMessage("Data Berhasil Ditambah", "Success", 1);
-                view.setVisible(false);
-                viewAwal.setVisible(true);
+                view.dispose();
+                new ControllerTampilanAwal(model);
             }
         }
-        db.disconnect();
-    }
+    }  
 }

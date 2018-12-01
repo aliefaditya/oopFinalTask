@@ -15,10 +15,6 @@ import model.Soal;
 import model.Mata_Pelajaran;
 import model.Penilaian;
 import model.Siswa;
-<<<<<<< HEAD
-=======
-
->>>>>>> 1a5a6b941d99054424e4b8a90db9f653ab068d07
 import model.Tutor;
 import model.Person;
 import model.Database;
@@ -91,10 +87,11 @@ public class ControllerTest extends MouseAdapter implements ActionListener {
 //        return i;
 //    }
     public void btnMulai(){
-
+        
         allSoal = Database.currentDB.getSoalTes(mp.getKode_matpel(),1 , 10);
         
         setCurrentSoal(0);
+        
         
         view.getBtnSubmit().addActionListener(new ActionListener() {
             @Override

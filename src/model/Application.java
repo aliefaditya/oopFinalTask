@@ -47,14 +47,18 @@ public class Application {
     public void addSiswa(String nama, int umur, 
             String alamat, String tgl_lahir, 
             String email,String nis, String asal_sd){
+       
         Siswa s = new Siswa(nama, umur, alamat, tgl_lahir, email, nis, asal_sd);
-        db.saveSiswa(s);
+       
+        //db.saveSiswa(s);
+        Database.currentDB.saveSiswa(s);
     }
     public void addTutor(String nama, int umur, 
             String alamat, String tgl_lahir, 
             String email,String nik, String no_ijazah, String password){
         Tutor t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
-        db.saveTutor(t);
+        //db.saveTutor(t);
+        Database.currentDB.saveTutor(t);
     }
 //    public void addPenilaian(double nilai,List<Mata_Pelajaran> MP, 
 //                List<Tutor> tutor,

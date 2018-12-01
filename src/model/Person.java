@@ -67,7 +67,7 @@ public class Person {
      * @param umur the umur to set
      */
     public void setUmur(int umur) {
-        if((umur >= 6)&&(umur <= 10)){
+        if(umur >= 6){
             this.umur = umur;
         }
     }
