@@ -196,6 +196,26 @@ public class Application {
         return listKode_matpel;
     }
     
+    public boolean isLoginTutor(String email,String password){
+        //mngecek data login user tertentu(username dan password)
+        return Database.currentDB.cekLoginTutor(email, password);
+    }
+    
+    public boolean isLoginSiswa(String email,String nis){
+        //mngecek data login user tertentu(username dan password)
+        return Database.currentDB.cekLoginSiswa(email, nis);
+    }
+    
+    public Siswa getSiswa(String email){
+        //mengambil data user dari list dan menyimpannya dalam sebuah string
+        return Database.currentDB.loadSiswaByEmail(email);
+    }
+    
+    public Tutor getTutor(String email){
+        //mengambil data tutor dari list dan menuyimpan dalam sebuah string
+        return Database.currentDB.loadTutorByEmail(email);
+    }
+    
 //    public String getASiswa(String nis){
 //        Siswa s = db.loadSiswaByNis(nis);
 //        return s.toString();

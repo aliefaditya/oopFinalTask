@@ -419,6 +419,7 @@ public class Database {
 //    }
 //    
 //    public Siswa loadSiswaByNis(String nis){
+//        connect();
 //        /* String nama, int umur, 
 //            String alamat, String tgl_lahir, 
 //            String email,String nis, String asal_sd */
@@ -437,6 +438,7 @@ public class Database {
 //                
 //                s = new Siswa(nama, umur, alamat, tgl_lahir, email, nis, asal_sd);
 //            }
+//            disconnect();
 //            return s;
 //         }
 //        catch(Exception e){
@@ -445,33 +447,94 @@ public class Database {
 //        }
 //    }
 //    
-//    public Tutor loadTutorByNik(String nik){
-//        /* String nama, int umur, 
-//            String alamat, String tgl_lahir, 
-//            String email,String nik, String no_ijazah, String password */
-//        try{
-//            Statement stmt = conn.createStatement();
-//            String query = "select * from tutor where nik = '"+nik+"'";
-//            ResultSet rs = stmt.executeQuery(query);
-//            Tutor t = null;
-//            while (rs.next()){
-//                String nama = rs.getString("nama");
-//                int umur = Integer.parseInt(rs.getString("umur"));
-//                String alamat = rs.getString("alamat");
-//                String tgl_lahir = rs.getString("tgl_lahir");
-//                String email = rs.getString("email");
-//                String no_ijazah = rs.getString("no_ijazah");
-//                String password = rs.getString("password");
-//                
-//                t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
-//            }
-//            return t;
-//         }
-//        catch(Exception e){
-//            System.out.println("error loading a tutor");
-//            return null;
-//        }
-//    }
+    public Siswa loadSiswaByEmail(String email){
+        connect();
+        /* String nama, int umur, 
+            String alamat, String tgl_lahir, 
+            String email,String nis, String asal_sd */
+        try{
+            Statement stmt = conn.createStatement();
+            String query = "select * from siswa where email='"+email+"';";
+            ResultSet rs = stmt.executeQuery(query);
+            Siswa s = null;
+            while (rs.next()){
+                String nama = rs.getString("nama");
+                int umur = Integer.parseInt(rs.getString("umur"));
+                String alamat = rs.getString("alamat");
+                String tgl_lahir = rs.getString("tgl_lahir");
+                String nis = rs.getString("nis");
+                String asal_sd = rs.getString("asal_sd");
+                
+                s = new Siswa(nama, umur, alamat, tgl_lahir, email, nis, asal_sd);
+            }
+            disconnect();
+            return s;
+         }
+        catch(Exception e){
+            System.out.println("error loading a siswa");
+            return null;
+        }
+    }
+    
+    public Tutor loadTutorByEmail(String email){
+        connect();
+        /* String nama, int umur, 
+            String alamat, String tgl_lahir, 
+            String email,String nik, String no_ijazah, String password */
+        try{
+            Statement stmt = conn.createStatement();
+            String query = "select * from tutor where email= '"+email+"'";
+            ResultSet rs = stmt.executeQuery(query);
+            Tutor t = null;
+            while (rs.next()){
+                String nama = rs.getString("nama");
+                int umur = Integer.parseInt(rs.getString("umur"));
+                String alamat = rs.getString("alamat");
+                String tgl_lahir = rs.getString("tgl_lahir");
+                String nik = rs.getString("nik");
+                String no_ijazah = rs.getString("no_ijazah");
+                String password = rs.getString("password");
+                
+                t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
+            }
+            disconnect();
+            return t;
+         }
+        catch(Exception e){
+            System.out.println("error loading a tutor");
+            return null;
+        }
+    }
+    
+    public Tutor loadTutorByNik(String nik){
+        connect();
+        /* String nama, int umur, 
+            String alamat, String tgl_lahir, 
+            String email,String nik, String no_ijazah, String password */
+        try{
+            Statement stmt = conn.createStatement();
+            String query = "select * from tutor where nik = '"+nik+"'";
+            ResultSet rs = stmt.executeQuery(query);
+            Tutor t = null;
+            while (rs.next()){
+                String nama = rs.getString("nama");
+                int umur = Integer.parseInt(rs.getString("umur"));
+                String alamat = rs.getString("alamat");
+                String tgl_lahir = rs.getString("tgl_lahir");
+                String email = rs.getString("email");
+                String no_ijazah = rs.getString("no_ijazah");
+                String password = rs.getString("password");
+                
+                t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
+            }
+            disconnect();
+            return t;
+         }
+        catch(Exception e){
+            System.out.println("error loading a tutor");
+            return null;
+        }
+    }
 //    
 //    public Mata_Pelajaran loadMPByKode_matpel(String kode_matpel){
 //        /*  String kode_matpel, String nama,
@@ -581,61 +644,62 @@ public class Database {
 //        }   return null;
 //    }
 //    
-//    public ArrayList<Siswa> loadAllSiswa(){
-//        try{
-//            ArrayList<Siswa> listSiswa = new ArrayList();
-//            Statement stmt = conn.createStatement();
-//            String query = "select * from siswa";
-//            ResultSet rs = stmt.executeQuery(query);
-//            Siswa s = null;
-//            while(rs.next()){
-//                String nama = rs.getString("nama");
-//                int umur = Integer.parseInt(rs.getString("umur"));
-//                String alamat = rs.getString("alamat");
-//                String tgl_lahir = rs.getString("tgl_lahir");
-//                String email = rs.getString("email");
-//                String nis = rs.getString("nis");
-//                String asal_sd = rs.getString("asal_sd");
-//                
-//                s = new Siswa(nama, umur, alamat, tgl_lahir, email, nis, asal_sd);
-//         
-//                listSiswa.add(s);
-//            }
-//            return listSiswa;
-//        }
-//        catch(Exception e){
-//            System.out.println("error loading list of test");
-//        }   return null;
-//    }
-//    
-//    public ArrayList<Tutor> loadAllTutor(){
-//        try{
-//            ArrayList<Tutor> listTutor = new ArrayList();
-//            Statement stmt = conn.createStatement();
-//            String query = "select * from tutor";
-//            ResultSet rs = stmt.executeQuery(query);
-//            Tutor t = null;
-//            while(rs.next()){
-//                String nama = rs.getString("nama");
-//                int umur = Integer.parseInt(rs.getString("umur"));
-//                String alamat = rs.getString("alamat");
-//                String tgl_lahir = rs.getString("tgl_lahir");
-//                String email = rs.getString("email");
-//                String no_ijazah = rs.getString("no_ijazah");
-//                String nik = rs.getString("nik");
-//                String password = rs.getString("password");
-//                
-//                t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
-//         
-//                listTutor.add(t);
-//            }
-//            return listTutor;
-//        }
-//        catch(Exception e){
-//            System.out.println("error loading list of test");
-//        }   return null;
-//    }
-//    
+    public ArrayList<Siswa> loadAllSiswa(){
+        try{
+            ArrayList<Siswa> listSiswa = new ArrayList();
+            Statement stmt = conn.createStatement();
+            String query = "select * from siswa";
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                String nama = rs.getString("nama");
+                int umur = Integer.parseInt(rs.getString("umur"));
+                String alamat = rs.getString("alamat");
+                String tgl_lahir = rs.getString("tgl_lahir");
+                String email = rs.getString("email");
+                String nis = rs.getString("nis");
+                String asal_sd = rs.getString("asal_sd");
+                
+                s = new Siswa(nama, umur, alamat, tgl_lahir, email, nis, asal_sd);
+         
+                listSiswa.add(s);
+            }
+            return listSiswa;
+        }
+        catch(Exception e){
+            System.out.println("error loading list of test");
+            return null;
+        }   
+    }
+    
+    public ArrayList<Tutor> loadAllTutor(){
+        try{
+            ArrayList<Tutor> listTutor = new ArrayList();
+            Statement stmt = conn.createStatement();
+            String query = "select * from tutor";
+            ResultSet rs = stmt.executeQuery(query);
+            Tutor t = null;
+            while(rs.next()){
+                String nama = rs.getString("nama");
+                int umur = Integer.parseInt(rs.getString("umur"));
+                String alamat = rs.getString("alamat");
+                String tgl_lahir = rs.getString("tgl_lahir");
+                String email = rs.getString("email");
+                String no_ijazah = rs.getString("no_ijazah");
+                String nik = rs.getString("nik");
+                String password = rs.getString("password");
+                
+                t = new Tutor(nama, umur, alamat, tgl_lahir, email, nik, no_ijazah, password);
+         
+                listTutor.add(t);
+            }
+            return listTutor;
+        }
+        catch(Exception e){
+            System.out.println("error loading list of test");
+            return null;
+        }   
+    }
+    
     public boolean cekDuplikatNIK(String nik){
         boolean cek = false;
         List<Tutor> listTutor = new ArrayList<>();
@@ -671,7 +735,7 @@ public class Database {
 //        return cek;
 //    }
 //    
-    public boolean cekTutor(String email, char[] password){
+    public boolean cekTutor(String email, String password){
         boolean cek = false;
         List<Tutor> listTutor = new ArrayList<>();
         for (Tutor t : listTutor) {
@@ -683,7 +747,7 @@ public class Database {
         return cek;
     }
     
-    public boolean cekSiswa(String email, char[] password){
+    public boolean cekSiswa(String email, String password){
         boolean cek = false;
         List<Siswa> listSiswa = new ArrayList<>();
         for (Siswa s : listSiswa) {
@@ -694,6 +758,50 @@ public class Database {
         }
         return cek;
     }
+    
+     public boolean cekLoginTutor(String email,String password){
+        //mengecek data user (username dan password)
+        connect();
+
+        boolean b=false;
+
+        try {
+            String query="select * from tutor where email='"+email+"'";
+            ResultSet rs = GetQueryResult(query);
+            while(rs.next()){
+            if(rs.getString("password").equals(password)){
+                b = true;
+            }
+            }
+        } catch (SQLException ex) {
+            System.out.println("login error : "+ex.getMessage());   
+        }
+
+        disconnect();
+        return b;
+     }
+     
+     public boolean cekLoginSiswa(String email,String nis){
+        //mengecek data user (username dan password)
+        connect();
+
+        boolean b=false;
+
+        try {
+            String query="select * from siswa where email='"+email+"'";
+            ResultSet rs = GetQueryResult(query);
+            while(rs.next()){
+            if(rs.getString("nis").equals(nis)){
+                b = true;
+            }
+            }
+        } catch (SQLException ex) {
+            System.out.println("login error : "+ex.getMessage());   
+        }
+
+        disconnect();
+        return b;
+     }
     
     
 }

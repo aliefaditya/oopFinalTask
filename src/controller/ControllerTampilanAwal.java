@@ -34,13 +34,17 @@ import view.*;
  * @author aditya rachman
  */
 public class ControllerTampilanAwal extends MouseAdapter implements ActionListener{
+    public static Siswa CurrentUserSiswa;
+    public static Tutor CurrentUserTutor;
     private Application model;
     private Tampilan_awal viewAwal;
     private List<Siswa> siswa;
+    private List<Tutor> tutor;
     private Home_siswa viewSiswa;
     private Home_tutor viewTutor;
     private Tampilan_regist_tutor viewTutorRegist;
     private Tampilan_regist_siswa viewSiswaRegist;
+   
     private Database db;
     
     public ControllerTampilanAwal(Application model){
@@ -48,7 +52,6 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
         viewAwal = new Tampilan_awal();
         viewAwal.addActionListener(this);
         viewAwal.setVisible(true);
-        
     }
     
     @Override
@@ -64,30 +67,49 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
     }
     
     
-    public void btnLogin() throws SQLException{
-        
+    public void btnLogin() {
+        System.out.println("click");
         String email = viewAwal.getEmail();
-        char[] password = viewAwal.getPassword();
-        String peran = viewAwal.getPeran().toLowerCase();
-        if(peran == "siswa"){
+        String password = viewAwal.getPassword();
+        String peran = viewAwal.getPeran();
+        System.out.println("password : "+password);
+        if(peran == "Siswa"){
            if (email.isEmpty()){
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-                if (Database.currentDB.cekSiswa(email, password)){
-                    new ControllerHomeSiswa(model);
+               System.out.println("in1");
+                if (model.isLoginSiswa(viewAwal.getEmail(), viewAwal.getPassword())){
+                    System.out.println("in2");
+                    viewAwal.dispose();
+                    ControllerTampilanAwal.CurrentUserSiswa = model.getSiswa(email);
+                    try {
+                        new ControllerHomeSiswa(model);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControllerTampilanAwal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             } 
         }
-        else if (peran == "tutor"){
+        else if (peran == "Tutor"){
            if ((email.isEmpty())||(password.toString() == " ")){
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-                if (Database.currentDB.cekTutor(email, password)){
-                    new ControllerHomeTutor(model);
+               System.out.println("click tutor");
+                if (model.isLoginTutor(viewAwal.getEmail(), viewAwal.getPassword())){
+                    viewAwal.dispose();
+                    ControllerTampilanAwal.CurrentUserTutor = model.getTutor(email);
+                    try {
+                        new ControllerHomeTutor(model);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControllerTampilanAwal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }           
+        }
+        else{
+            viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
         }
     }
     

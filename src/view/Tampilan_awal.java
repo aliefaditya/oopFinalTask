@@ -184,8 +184,8 @@ public class Tampilan_awal extends javax.swing.JFrame {
     public void setPassword(String s){
         pfPassword.setText(s);
     }
-    public char[] getPassword(){
-        return pfPassword.getPassword();
+    public String getPassword(){
+        return pfPassword.getText();
     }
     public void setPeran(String x){
         cbPeran.setSelectedItem(x);
