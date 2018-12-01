@@ -37,6 +37,7 @@ public class ControllerTest extends MouseAdapter implements ActionListener {
     private Mata_Pelajaran mp = null;
     private Database db;
     private int currentSoal = 0;
+
     
     private void setCurrentSoal(int i){
         currentSoal = i;
@@ -87,7 +88,7 @@ public class ControllerTest extends MouseAdapter implements ActionListener {
 //        return i;
 //    }
     public void btnMulai(){
-        
+        view.getBtnHome().setEnabled(false);
         allSoal = Database.currentDB.getSoalTes(mp.getKode_matpel(),1 , 10);
         
         setCurrentSoal(0);
@@ -106,7 +107,7 @@ public class ControllerTest extends MouseAdapter implements ActionListener {
     }
     
     public void btnStop(){
-        
+        view.getBtnHome().setEnabled(true);
     }
     
     public void showSoal(Soal soal){
@@ -162,8 +163,8 @@ public class ControllerTest extends MouseAdapter implements ActionListener {
         submit();
     }
     public void btnHome(){
-//        view.setVisible(false);
-//        viewTest.setVisible(true);
+        view.dispose();
+        new ControllerHomeSiswa(model);
     }
     public void btnExit(){
         System.exit(0);

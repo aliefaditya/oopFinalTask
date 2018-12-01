@@ -65,7 +65,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lJudul" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -74,16 +74,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="lJudul" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lJudul">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Test_BAHASA INGGRIS"/>
+            <Property name="text" type="java.lang.String" value="BAHASA INGGRIS"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -250,7 +250,6 @@
         <Component class="javax.swing.JButton" name="btnPrev">
           <Properties>
             <Property name="text" type="java.lang.String" value="Prev"/>
-            <Property name="actionCommand" type="java.lang.String" value="Prev"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnStop">

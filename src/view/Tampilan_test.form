@@ -242,7 +242,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnInggris">
               <Properties>
-                <Property name="text" type="java.lang.String" value="B.Inggris"/>
+                <Property name="text" type="java.lang.String" value="Matematika"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -312,7 +312,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnMtk">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Matematika"/>
+                <Property name="text" type="java.lang.String" value="B.Inggris"/>
               </Properties>
             </Component>
           </SubComponents>

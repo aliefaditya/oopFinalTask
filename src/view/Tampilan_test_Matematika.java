@@ -8,6 +8,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -35,7 +36,7 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lJudul = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
@@ -57,7 +58,7 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setText("Test_MATEMATIKA");
+        lJudul.setText("MATEMATIKA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,14 +66,14 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lJudul)
                 .addGap(86, 86, 86))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -131,7 +132,6 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
         btnNext.setText("Next");
 
         btnPrev.setText("Prev");
-        btnPrev.setActionCommand("Prev");
 
         btnStop.setText("Stop");
 
@@ -253,14 +253,15 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
        
     }
     
-    public String getSoal(){
-        return taSoal.getText();
+    public JLabel getJudul(){
+        return lJudul;
     }
-    public void setJawab(String s){
-        tfJawab.setText(s);
+    public javax.swing.JTextArea getSoal(){
+        return taSoal;
     }
-    public String getJawab(){
-        return tfJawab.getText();
+    
+    public javax.swing.JTextField getJawab(){
+        return tfJawab;
     }
     public JButton getBtnHome() {
         return btnHome;
@@ -283,12 +284,9 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
     public JButton getBtnSubmit() {
         return btnSubmit;
     }
-    public void setTextAreaSoal(String s){
-        taSoal.setText(s);
-    }
-    
     public void addActionListener(ActionListener x){
         btnHome.addActionListener(x);
+        btnStop.addActionListener(x);
         btnExit.addActionListener(x);
         btnMulai.addActionListener(x);
         btnNext.addActionListener(x);
@@ -306,7 +304,6 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnStop;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -314,6 +311,7 @@ public class Tampilan_test_Matematika extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lJudul;
     private javax.swing.JTextArea taSoal;
     private javax.swing.JTextField tfJawab;
     // End of variables declaration//GEN-END:variables

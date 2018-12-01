@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.List;
 import model.Application;
 import view.*;
 /**
@@ -33,17 +34,37 @@ import view.*;
 public class ControllerTestMtk extends MouseAdapter implements ActionListener {
     private Application model;
     private Tampilan_test_Matematika view;
-    private Tampilan_test viewTest;
+    private Home_siswa viewHomeSiswa;
+    private List<Soal> allSoal = null;
+    private Mata_Pelajaran mp = null;
     private Database db;
+    private int currentSoal = 0;
+    
+    private void setCurrentSoal(int i){
+        currentSoal = i;
+        if(i == 0){
+            view.getBtnPrev().setEnabled(false);
+        }else{
+            view.getBtnPrev().setEnabled(true);
+        }
+        if(i >= allSoal.size()-1){
+            view.getBtnNext().setEnabled(false);
+        }else{
+            view.getBtnNext().setEnabled(true);
+        }
+    }
 
     
-    public ControllerTestMtk(Application model){
+    public ControllerTestMtk(Application model , Mata_Pelajaran mp){
         this.model = model;
         view = new Tampilan_test_Matematika();
         view.setVisible(true);
         view.addActionListener(this);
-        view.setVisible(true);
+        view.getBtnHome().setEnabled(false);
+        view.getJudul().setText(mp.getNama());
+        this.mp = mp;
     }
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
@@ -57,33 +78,95 @@ public class ControllerTestMtk extends MouseAdapter implements ActionListener {
         }else if (source.equals(view.getBtnStop())){
             btnStop();
         }else if (source.equals(view.getBtnSubmit())){
-            btnSubmit();
+     
+            //btnSubmit();
         }else if (source.equals(view.getBtnHome())){
             btnHome();
         }else if (source.equals(view.getBtnExit())){
             btnExit();
         }
+    }
+//    public int getI(){
+//        return i;
+//    }
+    public void btnMulai(){
+        
+        allSoal = Database.currentDB.getSoalTes(mp.getKode_matpel(),1 , 10);
+        
+        setCurrentSoal(0);
+        
+        
+        view.getBtnSubmit().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+                submit();
+            }
+        });
+        
+        showSoal(allSoal.get(currentSoal));
         
     }
     
-    public void btnMulai(){
-     //   for (int i=0;i<model)
+    public void btnStop(){
+        view.getBtnHome().setEnabled(true);
     }
-    public void btnNext(){
-  
+    
+    public void showSoal(Soal soal){
+        String q = soal.getSoal();
+        
+        
+        view.getSoal().setText(q);
+        view.getJawab().setText(soal.getJawaban());
+    }
+    
+    public void saveJawaban(){
+        allSoal.get(currentSoal).setJawaban(view.getJawab().getText());
+    }
+    public void submit(){
+        saveJawaban();
+        setCurrentSoal(currentSoal+1);
+        
+        if(currentSoal < allSoal.size()){
+            
+            showSoal(allSoal.get(currentSoal));
+        }else{
+            view.getBtnSubmit().setEnabled(false);
+            finishTes();
+        }
+    }
+    
+    public void finishTes(){
+        System.out.println("Hasil = "+model.getScore(allSoal));
+    }
+    
+    public void btnNext(){  
+        if(allSoal == null)
+            return;
+        
+        saveJawaban();
+        setCurrentSoal(currentSoal+1);
+        showSoal(allSoal.get(currentSoal));
     }
     public void btnPrev(){
-    
+        if(allSoal == null)
+            return;
+        
+        saveJawaban();
+        setCurrentSoal(currentSoal-1);
+        showSoal(allSoal.get(currentSoal));
     }
-    public void btnStop(){
-    
-    }
+//    public void btnStop(){
+//        db.connect();
+//        
+//        db.disconnect();
+//    }
     public void btnSubmit(){
-    
+        submit();
     }
     public void btnHome(){
-        view.setVisible(false);
-        viewTest.setVisible(true);
+        view.dispose();
+        new ControllerHomeSiswa(model);
     }
     public void btnExit(){
         System.exit(0);

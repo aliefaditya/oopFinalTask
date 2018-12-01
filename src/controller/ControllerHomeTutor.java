@@ -40,7 +40,7 @@ public class ControllerHomeTutor extends MouseAdapter implements ActionListener{
     private Tampilan_penilaian viewPenilaian;
     private Database db;
 
-    public ControllerHomeTutor(Application model) throws SQLException{
+    public ControllerHomeTutor(Application model) {
         viewHomeTutor = new Home_tutor();
         db = new Database();
         viewHomeTutor.addActionListener(this);
@@ -60,8 +60,8 @@ public class ControllerHomeTutor extends MouseAdapter implements ActionListener{
     }
         
     public void btnLogout(){
-        viewHomeTutor.setVisible(false);
-        viewAwal.setVisible(true);
+        viewHomeTutor.dispose();
+        new ControllerTampilanAwal(model);
     }
     public void btnExit(){
         System.exit(0);

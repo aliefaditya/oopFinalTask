@@ -56,7 +56,7 @@ public class Tampilan_test_indo extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lJudul.setText("Test_BAHASA INDONESIA");
+        lJudul.setText("BAHASA INDONESIA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -262,6 +262,7 @@ public class Tampilan_test_indo extends javax.swing.JFrame {
         btnMulai.addActionListener(x);
         btnNext.addActionListener(x);
         btnPrev.addActionListener(x);
+        btnStop.addActionListener(x);
     }
     public void showMessage(String message, String title, int type){
         JOptionPane.showMessageDialog(null, message, title, type);

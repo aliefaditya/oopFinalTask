@@ -68,7 +68,6 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
     
     
     public void btnLogin() {
-        System.out.println("click");
         String email = viewAwal.getEmail();
         String password = viewAwal.getPassword();
         String peran = viewAwal.getPeran();
@@ -78,16 +77,13 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-               System.out.println("in1");
                 if (model.isLoginSiswa(viewAwal.getEmail(), viewAwal.getPassword())){
-                    System.out.println("in2");
                     viewAwal.dispose();
                     ControllerTampilanAwal.CurrentUserSiswa = model.getSiswa(email);
-                    try {
-                        new ControllerHomeSiswa(model);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ControllerTampilanAwal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    new ControllerHomeSiswa(model);
+                }
+                else{
+                     viewAwal.showMessage("Data tidak sesuai", "Error", 0);
                 }
             } 
         }
@@ -96,15 +92,15 @@ public class ControllerTampilanAwal extends MouseAdapter implements ActionListen
                 viewAwal.showMessage("Input Username/Password Anda Kosong", "Error", 0);
            }
            else{
-               System.out.println("click tutor");
                 if (model.isLoginTutor(viewAwal.getEmail(), viewAwal.getPassword())){
+                    System.out.println("test");
                     viewAwal.dispose();
                     ControllerTampilanAwal.CurrentUserTutor = model.getTutor(email);
-                    try {
-                        new ControllerHomeTutor(model);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ControllerTampilanAwal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    new ControllerHomeTutor(model);
+                    
+                }
+                else{
+                     viewAwal.showMessage("Data tidak sesuai", "Error", 0);
                 }
             }           
         }

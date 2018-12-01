@@ -34,7 +34,6 @@ import view.*;
  */
 public class ControllerHomeSiswa  extends MouseAdapter implements ActionListener{
     private Application model;
-    private tampilan_latihan viewLatihan;
     private Tampilan_materi viewMateri;
     private Tampilan_test viewTest;
     private Home_siswa viewHomeSiswa;
@@ -42,7 +41,7 @@ public class ControllerHomeSiswa  extends MouseAdapter implements ActionListener
     private Tampilan_penilaian viewPenilaian;
     private Database db;
 
-    public ControllerHomeSiswa(Application model) throws SQLException{
+    public ControllerHomeSiswa(Application model){
         viewHomeSiswa = new Home_siswa();
         db = new Database();
         viewHomeSiswa.addActionListener(this);
@@ -62,32 +61,23 @@ public class ControllerHomeSiswa  extends MouseAdapter implements ActionListener
             btnMateri();
         }else if (source.equals(viewHomeSiswa.getBtnTest())){
             btnTest();
-        }else if (source.equals(viewHomeSiswa.getBtnLatihan())){
-            btnLatihan();
         }
     }
         
     public void btnLogout(){
-        viewHomeSiswa.setVisible(false);
-        viewAwal.setVisible(true);
+        viewHomeSiswa.dispose();
+        new ControllerTampilanAwal(model);
     }
     public void btnExit(){
         System.exit(0);
     }
     public void btnMateri(){
-        viewHomeSiswa.setVisible(false);
-        viewMateri.setVisible(true);
+        new ControllerMateri(model);
     }
     public void btnTest(){
-        viewHomeSiswa.setVisible(false);
-        viewTest.setVisible(true);
-    }
-    public void btnLatihan(){
-        viewHomeSiswa.setVisible(false);
-        viewLatihan.setVisible(true);
+        new ControllerTestGabungan(model);
     }
     public void btnPenilaian(){
-        viewHomeSiswa.setVisible(false);
-        viewPenilaian.setVisible(true);
+        new ControllerPenilaian(model);
     }
 }

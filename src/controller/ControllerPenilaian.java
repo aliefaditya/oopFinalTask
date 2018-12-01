@@ -7,6 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import model.Application;
 import model.Soal;
 import model.Mata_Pelajaran;
 import model.Penilaian;
@@ -20,5 +21,9 @@ import model.Database;
  * @author aditya rachman
  */
 public class ControllerPenilaian {
+
+    ControllerPenilaian(Application model) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

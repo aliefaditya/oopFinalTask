@@ -29,6 +29,7 @@ public class Mata_Pelajaran implements GettingDataAble{
         this.jenis_materi = jenis_materi;
         this.score_kelulusan = minScore;
     }
+    
 
     
     public List<Soal> getLatihan(int level){

@@ -8,6 +8,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +34,7 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lJudul = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
@@ -55,7 +56,7 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setText("Test_BAHASA INGGRIS");
+        lJudul.setText("BAHASA INGGRIS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,14 +64,14 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lJudul)
                 .addGap(86, 86, 86))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -129,7 +130,6 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
         btnNext.setText("Next");
 
         btnPrev.setText("Prev");
-        btnPrev.setActionCommand("Prev");
 
         btnStop.setText("Stop");
 
@@ -250,8 +250,15 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
         /* Create and display the form */
         
     }
-    public String getSoal(){
-        return taSoal.getText();
+    public javax.swing.JTextArea getSoal(){
+        return taSoal;
+    }
+    
+    public javax.swing.JTextField getJawab(){
+        return tfJawab;
+    }
+    public JLabel getJudul(){
+        return lJudul;
     }
     public void setJawab(String s){
         tfJawab.setText(s);
@@ -283,6 +290,7 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
         btnMulai.addActionListener(x);
         btnNext.addActionListener(x);
         btnPrev.addActionListener(x);
+        btnStop.addActionListener(x);
     }
     public void showMessage(String message, String title, int type){
         JOptionPane.showMessageDialog(null, message, title, type);
@@ -296,7 +304,6 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnStop;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -304,6 +311,7 @@ public class Tampilan_test_inggris extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lJudul;
     private javax.swing.JTextArea taSoal;
     private javax.swing.JTextField tfJawab;
     // End of variables declaration//GEN-END:variables

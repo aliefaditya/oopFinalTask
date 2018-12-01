@@ -51,8 +51,6 @@ public class Tampilan_awal extends javax.swing.JFrame {
 
         jLabel1.setText("Email");
 
-        tfEmail.setText(" ");
-
         jLabel2.setText("Password");
 
         btnLogin.setText("Login");

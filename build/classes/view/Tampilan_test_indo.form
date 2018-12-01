@@ -83,7 +83,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lJudul">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Test_BAHASA INDONESIA"/>
+            <Property name="text" type="java.lang.String" value="BAHASA INDONESIA"/>
           </Properties>
         </Component>
       </SubComponents>
